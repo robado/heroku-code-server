@@ -5,11 +5,13 @@ FROM ubuntu:20.04
 RUN apt-get update \
  && apt-get upgrade -y
 ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/Moscow
+ENV TZ=Europe/Helsinki
 RUN apt-get install -y tzdata && \
     apt-get install -y \
     curl \
     wget \
+    nodejs \
+    golang-go \
     python3 \
     gcc \ 
     python3-pip \
@@ -27,8 +29,6 @@ RUN apt-get install -y tzdata && \
    rclone \
    fuse \
     && rm -rf /var/lib/apt/lists/*
-
-
 
   RUN sed -i "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen \
   && locale-gen
